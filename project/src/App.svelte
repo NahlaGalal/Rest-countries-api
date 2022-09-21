@@ -1,12 +1,31 @@
 <script lang="ts">
+  import router from "page";
   import Navbar from "./components/Navbar.svelte";
+  import Home from "./pages/Home.svelte";
+  import Detail from "./pages/Detail.svelte";
+
+  let page: any;
+  let params: string = "";
+
+  router("/", () => (page = Home));
+  router(
+    "/detail/:id",
+    (ctx, next) => {
+      params = ctx.params;
+      next();
+    },
+    () => (page = Detail)
+  );
+
+  router.start();
 </script>
 
 <Navbar />
+<svelte:component this={page} {params} />
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
-	
+
   :global(:root) {
     --dark-text: hsl(0, 0%, 100%);
     --dark-elements: hsl(209, 23%, 22%);
@@ -21,7 +40,7 @@
     margin: 0;
     padding: 0;
     font-family: "Nunito Sans";
-		background-color: var(--light-background);
+    background-color: var(--light-background);
   }
 
   :global(*, button, input, select, textarea) {
