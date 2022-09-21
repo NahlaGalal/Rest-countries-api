@@ -1,15 +1,17 @@
-<script>
-  export const params = "";
+<script type="ts">
+  import HomeFilters from '../components/HomeFilters.svelte';
 </script>
 
 <div class="container">
-  <p>Hello</p>
+  <HomeFilters />
+
+  <main>
+    <!-- Cards -->
+  </main>
 </div>
 
 <style>
   .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(305px, 1fr));
-    grid-gap: 15px;
+    padding: 40px 10%;
   }
 </style>
