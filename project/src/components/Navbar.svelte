@@ -21,6 +21,7 @@
     padding: 20px 10%;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     color: var(--light-text);
+    background-color: var(--light-elements);
   }
   
   button {
