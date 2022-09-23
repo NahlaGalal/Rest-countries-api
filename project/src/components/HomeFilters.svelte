@@ -1,10 +1,26 @@
 <script type="ts">
   import IoIosSearch from "svelte-icons/io/IoIosSearch.svelte";
+  import { createEventDispatcher } from "svelte";
 
-  const regions = ["Africa", "America", "Asia", "Europe", "Ocienea"];
+  const dispatch = createEventDispatcher();
+  const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
   let searchVal: string = "";
   let region: string = "";
+  let timer: any;
+
+  const onSearchHandler = () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      dispatch("search", {
+        searchVal,
+      });
+    }, 300);
+  };
+
+  const onFilterRegion = () => {
+    dispatch("filter", { region });
+  };
 </script>
 
 <header class="header">
@@ -15,13 +31,14 @@
       type="search"
       placeholder="Search for a country..."
       bind:value={searchVal}
+      on:input={onSearchHandler}
     />
 
     <div class="search__icon"><IoIosSearch /></div>
   </div>
 
   <!-- Select filter -->
-  <select bind:value={region} class="input select">
+  <select bind:value={region} class="input select" on:change={onFilterRegion}>
     <option value="" disabled>Filter by Region</option>
     {#each regions as region}
       <option value={region}>

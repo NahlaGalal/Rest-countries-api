@@ -11,9 +11,11 @@
     capital: string;
   }[] = [];
 
-  onMount(async () => {
-    const res = await fetch("https://restcountries.com/v3.1/all");
+  const getCountries = async (url: string) => {
+    const res = await fetch(`https://restcountries.com/v3.1/${url}`);
     const data = await res.json();
+
+    if (data.status === 404) countries = [];
 
     countries = data.map((country: any) => ({
       img: country.flags.png,
@@ -22,11 +24,25 @@
       region: country.region,
       capital: country.capital?.join(", "),
     }));
+  };
+
+  onMount(async () => {
+    getCountries("all");
   });
+
+  const onSearchHandler = async (e) => {
+    const { searchVal } = e.detail;
+    getCountries(searchVal ? `name/${searchVal}` : "all");
+  };
+
+  const onFilterRegion = async (e) => {
+    const { region } = e.detail;
+    getCountries(`region/${region}`);
+  };
 </script>
 
 <div class="container">
-  <HomeFilters />
+  <HomeFilters on:search={onSearchHandler} on:filter={onFilterRegion} />
 
   <main class="cards">
     <!-- Cards -->
