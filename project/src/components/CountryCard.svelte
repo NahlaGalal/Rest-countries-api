@@ -10,14 +10,17 @@
     name: "",
     population: 0,
     region: "",
-    capital: ""
+    capital: "",
   };
 </script>
 
 <section>
   <img src={country.img} alt="" />
   <p class="name">{country.name}</p>
-  <p><span>Population: </span> {country.population}</p>
+  <p>
+    <span>Population: </span>
+    {new Intl.NumberFormat("en-US").format(country.population)}
+  </p>
   <p><span>Region: </span> {country.region}</p>
   <p><span>Capital: </span> {country.capital}</p>
 </section>
