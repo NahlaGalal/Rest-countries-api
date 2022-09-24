@@ -4,6 +4,8 @@
   import Home from "./pages/Home.svelte";
   import Detail from "./pages/Detail.svelte";
 
+  document.title = "Rest countries Api"
+
   const toggleTheme = (name: "dark" | "light") => {
     if(name === "dark") {
       document.documentElement.style.setProperty('--light-text', 'hsl(0, 0%, 100%)');
