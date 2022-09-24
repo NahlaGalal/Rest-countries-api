@@ -1,5 +1,5 @@
 <script lang="ts">
-  import FaRegMoon from 'svelte-icons/fa/FaRegMoon.svelte'
+  import FaRegMoon from "svelte-icons/fa/FaRegMoon.svelte";
 </script>
 
 <nav>
@@ -23,7 +23,7 @@
     color: var(--light-text);
     background-color: var(--light-elements);
   }
-  
+
   button {
     display: flex;
     background-color: transparent;
@@ -42,5 +42,11 @@
     display: block;
     width: 16px;
     height: 16px;
+  }
+
+  @media screen and (max-width: 500px) {
+    h1 {
+      font-size: 1rem;
+    }
   }
 </style>
