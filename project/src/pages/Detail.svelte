@@ -1,12 +1,10 @@
 <script>
-  import { onMount } from "svelte";
-
-  export let params;
-
-  onMount(() => console.log(params));
+  export let name;
 </script>
 
-<div class="container">This is a news app created with Svelte</div>
+<div class="container">
+  <p>{name}</p>
+</div>
 
 <style>
 </style>

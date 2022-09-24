@@ -55,10 +55,6 @@
 </div>
 
 <style>
-  .container {
-    padding: 40px 10%;
-  }
-
   .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

@@ -1,4 +1,6 @@
 <script type="ts">
+  import { link } from "svelte-routing";
+
   export let country: {
     img: string;
     name: string;
@@ -15,14 +17,16 @@
 </script>
 
 <section>
-  <img src={country.img} alt="" />
-  <p class="name">{country.name}</p>
-  <p>
-    <span>Population: </span>
-    {new Intl.NumberFormat("en-US").format(country.population)}
-  </p>
-  <p><span>Region: </span> {country.region}</p>
-  <p><span>Capital: </span> {country.capital}</p>
+  <a class="link" href={`/detail/${country.name}`} use:link>
+    <img src={country.img} alt="" />
+    <p class="name">{country.name}</p>
+    <p>
+      <span>Population: </span>
+      {new Intl.NumberFormat("en-US").format(country.population)}
+    </p>
+    <p><span>Region: </span> {country.region}</p>
+    <p><span>Capital: </span> {country.capital}</p>
+  </a>
 </section>
 
 <style>
@@ -31,6 +35,11 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     color: var(--light-text);
     padding-bottom: 40px;
+  }
+
+  .link {
+    color: var(--light-text);
+    text-decoration: none;
   }
 
   img {

@@ -1,27 +1,19 @@
 <script lang="ts">
-  import router from "page";
+  import { Router, Route } from "svelte-routing";
   import Navbar from "./components/Navbar.svelte";
   import Home from "./pages/Home.svelte";
   import Detail from "./pages/Detail.svelte";
 
-  let page: any;
-  let params: string = "";
-
-  router("/", () => (page = Home));
-  router(
-    "/detail/:id",
-    (ctx, next) => {
-      params = ctx.params;
-      next();
-    },
-    () => (page = Detail)
-  );
-
-  router.start();
+  export let url = "";
 </script>
 
 <Navbar />
-<svelte:component this={page} {params} />
+<Router {url}>
+  <Route path="/" component={Home} />
+  <Route path="/detail/:name" let:params>
+    <Detail name={params.name} />
+  </Route>
+</Router>
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
@@ -47,5 +39,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  :global(.container) {
+    padding: 40px 10%;
   }
 </style>
