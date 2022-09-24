@@ -4,10 +4,22 @@
   import Home from "./pages/Home.svelte";
   import Detail from "./pages/Detail.svelte";
 
+  const toggleTheme = (name: "dark" | "light") => {
+    if(name === "dark") {
+      document.documentElement.style.setProperty('--light-text', 'hsl(0, 0%, 100%)');
+      document.documentElement.style.setProperty('--light-elements', 'hsl(209, 23%, 22%)');
+      document.documentElement.style.setProperty('--light-background', 'hsl(207, 26%, 17%)');
+    } else {
+      document.documentElement.style.setProperty('--light-text', 'hsl(200, 15%, 8%)');
+      document.documentElement.style.setProperty('--light-elements', 'hsl(0, 0%, 100%)');
+      document.documentElement.style.setProperty('--light-background', 'hsl(0, 0%, 98%)');
+    }
+  };
+
   export let url = "";
 </script>
 
-<Navbar />
+<Navbar {toggleTheme} />
 <Router {url}>
   <Route path="/" component={Home} />
   <Route path="/detail/:name" let:params>
@@ -19,9 +31,6 @@
   @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 
   :global(:root) {
-    --dark-text: hsl(0, 0%, 100%);
-    --dark-elements: hsl(209, 23%, 22%);
-    --dark-background: hsl(207, 26%, 17%);
     --light-text: hsl(200, 15%, 8%);
     --light-elements: hsl(0, 0%, 100%);
     --light-background: hsl(0, 0%, 98%);

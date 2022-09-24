@@ -1,15 +1,33 @@
 <script lang="ts">
   import FaRegMoon from "svelte-icons/fa/FaRegMoon.svelte";
+  import FaRegSun from "svelte-icons/fa/FaRegSun.svelte";
+
+  export let toggleTheme: (name: "dark" | "light") => void;
+
+  let theme: "light" | "dark" = "light";
+
+  const toggleThemeHandler = () => {
+    theme = theme === "dark" ? "light" : "dark";
+    toggleTheme(theme);
+  };
 </script>
 
 <nav>
   <h1>Where in the world?</h1>
 
-  <button>
+  <button on:click={toggleThemeHandler}>
     <span>
-      <FaRegMoon />
+      {#if theme === "dark"}
+        <FaRegSun />
+      {:else}
+        <FaRegMoon />
+      {/if}
     </span>
-    Dark Mode
+    {#if theme === "dark"}
+      Light Mode
+    {:else}
+      Dark Mode
+    {/if}
   </button>
 </nav>
 

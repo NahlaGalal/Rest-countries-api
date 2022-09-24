@@ -84,6 +84,7 @@
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
+    color: var(--light-text);
   }
 
   .select {

@@ -102,7 +102,11 @@
               </div>
               <div class="country-data__item">
                 <dt>Currencies:</dt>
-                <dd>{Object.values(country.currencies).map((cur) => cur.name).join(", ")}</dd>
+                <dd>
+                  {Object.values(country.currencies)
+                    .map((cur) => cur.name)
+                    .join(", ")}
+                </dd>
               </div>
               <div class="country-data__item">
                 <dt>Languages:</dt>
